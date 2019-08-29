@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; //Menggunakan Fitur DB(Insert, Select, Update, Delete)
 
 class MahasiswaController extends Controller
 {
@@ -15,7 +16,9 @@ class MahasiswaController extends Controller
     {
         // Biasanya kita bisa menggunakan mahasiswa/index
         // Kali ini kita mencoba memakai mahasiswa.index
-        return view('mahasiswa.index');
+        $mahasiswa = DB::table('mahasiswa')->get();
+        dump($mahasiswa);
+        return view('mahasiswa.index', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
