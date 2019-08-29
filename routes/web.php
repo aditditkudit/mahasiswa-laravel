@@ -11,15 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/about', function() {
-    $nama = 'Kudit Ganteng';
-    return view('aboutus', ['nama' => $nama] );
-});
+// Route::get('/about', function() {
+//     $nama = 'Kudit Ganteng';
+//     return view('aboutus', ['nama' => $nama] );
+// });
 
-Route::get('/mahasiswa', function() {
-    return view('mahasiswa');
-});
+// Route::get('/mahasiswa', function() {
+//     return view('mahasiswa');
+// });
+
+
+Route::get('/', 'PagesController@home');
+Route::get('/about', 'PagesController@about');
+
+// Menampilkan data mahasiswa (index)
+Route::get('/mahasiswa', 'MahasiswaController@index');
