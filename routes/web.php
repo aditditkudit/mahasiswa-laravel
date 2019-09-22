@@ -30,3 +30,10 @@ Route::get('/about', 'PagesController@about');
 
 // Menampilkan data mahasiswa (index)
 Route::get('/mahasiswa', 'MahasiswaController@index');
+Route::get('/mahasiswa/formsederhana', 'MahasiswaController@formsederhana');
+Route::post('/mahasiswa/formsederhana', 'MahasiswaController@postformsederhana');
+
+Route::get('/students', 'StudentsController@index');
+Route::get('/students/create', 'StudentsController@create');
+Route::get('/students/{student}', 'StudentsController@show');
+Route::post('/students/create', 'StudentsController@store');
