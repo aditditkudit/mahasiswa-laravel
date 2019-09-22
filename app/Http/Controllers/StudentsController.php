@@ -36,15 +36,33 @@ class StudentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $student = new Student;
-        $student->nama = $request->nama;
-        $student->nim = $request->nim;
-        $student->email = $request->email;
-        $student->jurusan = $request->jurusan;
+    {   
+        // Validasi
+        $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email',
+            'nim' => 'required',
+            'jurusan'=>'required'
+        ]);
+        // Cara 1
+        // $student = new Student;
+        // $student->nama = $request->nama;
+        // $student->nim = $request->nim;
+        // $student->email = $request->email;
+        // $student->jurusan = $request->jurusan;
 
-        $student->save();
-        return redirect('/students');
+        // $student->save();
+        // Cara 2 membutuhkan method protected $fillable pada model
+        // Student::create([
+        //     'nama' => $request->nama,
+        //     'nim' => $request->nim,
+        //     'email' => $request->email,
+        //     'jurusan' => $request->jurusan,
+        // ]);
+
+        // Cara 3 membutuhkan method protected $fillable pada model
+        Student::create($request->all());
+        return redirect('/students')->with('status', 'Data mahasiswa berhasil ditambahkan');
     }
 
     /**
